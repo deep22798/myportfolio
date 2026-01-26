@@ -1,0 +1,177 @@
+/* ===== ASHLEY DESIGN SYSTEM ===== */
+:root {
+  --bg-main: #f8f8f8;
+  --bg-white: #ffffff;
+  --text-heading: #0f172a;
+  --text-body: #475569;
+  --btn-primary: #111827;
+  --border-light: #e5e7eb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg-main);
+  color: var(--text-heading);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 24px;
+}
+
+/* ===== HEADER ===== */
+.site-header {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.site-header .inner {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-header nav a {
+  margin-left: 32px;
+  font-weight: 500;
+}
+
+/* ===== HERO (ASHLEY STYLE) ===== */
+.hero {
+  padding: 140px 0 120px;
+}
+
+.hero h1 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+}
+
+.hero p {
+  margin-top: 24px;
+  font-size: 18px;
+  color: var(--text-body);
+  max-width: 640px;
+}
+
+.hero-actions {
+  margin-top: 48px;
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 16px 36px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all .3s ease;
+}
+
+.btn-primary {
+  background: var(--btn-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #000;
+}
+
+.btn-outline {
+  border: 1px solid var(--border-light);
+}
+
+.btn-outline:hover {
+  background: var(--btn-primary);
+  color: #fff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 42px;
+  }
+}
+/* ===== ASHLEY PROJECTS GRID ===== */
+
+.ashley-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 60px;
+}
+
+.ashley-card {
+  display: block;
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: transform .45s ease, box-shadow .45s ease;
+}
+
+.ashley-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 60px rgba(0,0,0,.08);
+}
+
+.ashley-image {
+  height: 260px;
+  overflow: hidden;
+}
+
+.ashley-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .7s ease;
+}
+
+.ashley-card:hover img {
+  transform: scale(1.08);
+}
+
+.ashley-info {
+  padding: 26px 28px 32px;
+}
+
+.ashley-type {
+  display: inline-block;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #64748b;
+  margin-bottom: 10px;
+}
+
+.ashley-info h3 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .ashley-grid {
+    gap: 40px;
+  }
+
+  .ashley-image {
+    height: 220px;
+  }
+}
