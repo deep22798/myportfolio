@@ -46,6 +46,7 @@ $routes->get('project/(:segment)', 'Projects::show/$1');
 $routes->get('contact', 'Pages::contact');
 $routes->post('contact', 'Pages::sendContact');
 $routes->get('projects', 'Projects::index');
+$routes->get('set-theme/(:segment)', 'Theme::set/$1');
 
 
 

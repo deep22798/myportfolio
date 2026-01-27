@@ -1,47 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="<?= session()->get('theme') ?? 'light' ?>">
 <head>
   <meta charset="UTF-8">
-  <title><?= $title ?? 'StepUp Studio' ?></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/assets/css/style.css">
+  <title>StepUp Studio</title>
 
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #f8f8f8;
-      color: #0f172a;
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 0 20px;
-    }
-  </style>
+  <!-- GLOBAL CSS -->
+  <link rel="stylesheet" href="<?= base_url('assets/css/app.css') ?>">
 </head>
 
 <body>
 
-<?= view('layout/header') ?>
+<?= $this->include('layout/header') ?>
+
+<!-- GLOBAL THEME TOGGLE -->
+<button id="themeToggle"
+  style="position:fixed;bottom:24px;right:24px;z-index:1000;">
+  🌓
+</button>
 
 <?= $this->renderSection('content') ?>
 
-<?= view('layout/footer') ?>
+<?= $this->include('layout/footer') ?>
+
+<!-- GLOBAL JS (ABSOLUTE PATH) -->
+<script src="<?= base_url('assets/js/app.js') ?>"></script>
 
 </body>
 </html>
