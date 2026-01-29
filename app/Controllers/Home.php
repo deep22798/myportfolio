@@ -20,7 +20,7 @@ class Home extends BaseController
             ->findAll();
 
         // 🔹 Other dynamic sections
-        $settings     = (new SiteSettingModel())->getAllKeyValue();
+        // $settings     = (new SiteSettingModel())->getAllKeyValue();
         $skills       = (new SkillModel())->where('status', 1)->orderBy('sort_order')->findAll();
         $experience   = (new ExperienceModel())->orderBy('sort_order')->findAll();
         $techStack    = (new TechStackModel())->orderBy('sort_order')->findAll();
@@ -29,7 +29,7 @@ class Home extends BaseController
         return view('home', [
             'title'        => 'Home',
             'projects'     => $projects,
-            'settings'     => $settings,
+            // 'settings'     => $settings,
             'skills'       => $skills,
             'experience'   => $experience,
             'techStack'    => $techStack,

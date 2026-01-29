@@ -132,7 +132,7 @@
       <?php foreach($skills as $s): ?>
 <div class="skill-card" data-animate="scale-up">
   <div class="skill-icon">
-    <img src="<?= base_url('assets/icons/'.$s['icon']) ?>">
+    <img src="<?= base_url('uploads/skills/'.$s['icon']) ?>">
   </div>
   <h4><?= esc($s['title']) ?></h4>
   <p><?= esc($s['description']) ?></p>

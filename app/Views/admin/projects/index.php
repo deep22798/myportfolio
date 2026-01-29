@@ -1,64 +1,42 @@
-<?= view('admin/layout/header') ?>
-<?= view('admin/layout/sidebar') ?>
+<?= $this->extend('admin/layout/main') ?>
+<?= $this->section('content') ?>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h3>Projects</h3>
-  <a href="/admin/projects/create" class="btn btn-dark">+ Add Project</a>
+<div class="admin-header-row">
+  <h1>Projects</h1>
+  <a href="/admin/projects/create" class="btn btn-primary">+ Add Project</a>
 </div>
 
-<?php if (empty($projects)): ?>
-  <p>No projects found.</p>
-<?php else: ?>
-  <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Title</th>
-      <th>Type</th>
-      <th>Status</th>
-      <th>Featured</th>
-      <th>Created</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($projects as $i => $project): ?>
-      <tr>
-        <td><?= $i + 1 ?></td>
-        <td><?= esc($project['title']) ?></td>
-        <td><?= esc($project['type']) ?></td>
-        <td><?= esc($project['status']) ?></td>
-        <td><?= $project['is_featured'] ? '⭐' : '-' ?></td>
-        <td><?= date('d M Y', strtotime($project['created_at'])) ?></td>
-        <td>
-          <!-- View (public / 3D later) -->
-          <a 
-            href="/project/<?= $project['slug'] ?>" 
-            target="_blank"
-            class="btn btn-sm btn-secondary">
-            View
-          </a>
+<?php if(session()->getFlashdata('success')): ?>
+<p class="success"><?= session()->getFlashdata('success') ?></p>
+<?php endif ?>
 
-          <!-- Edit -->
-          <a 
-            href="/admin/projects/edit/<?= $project['id'] ?>" 
-            class="btn btn-sm btn-primary">
-            Edit
-          </a>
+<table class="admin-table">
+<tr>
+  <th>Thumb</th>
+  <th>Title</th>
+  <th>Type</th>
+  <th>Status</th>
+  <th>Featured</th>
+  <th>Actions</th>
+</tr>
 
-          <!-- Delete -->
-          <a 
-            href="/admin/projects/delete/<?= $project['id'] ?>" 
-            class="btn btn-sm btn-danger"
-            onclick="return confirm('Delete this project?')">
-            Delete
-          </a>
-        </td>
-      </tr>
-    <?php endforeach; ?>
-  </tbody>
+<?php foreach($projects as $p): ?>
+<tr>
+  <td>
+    <?php if($p['thumbnail']): ?>
+      <img src="/uploads/projects/thumbs/<?= $p['thumbnail'] ?>" width="60">
+    <?php endif ?>
+  </td>
+  <td><?= esc($p['title']) ?></td>
+  <td><?= esc($p['type']) ?></td>
+  <td><?= ucfirst($p['status']) ?></td>
+  <td><?= $p['is_featured'] ? 'Yes' : 'No' ?></td>
+  <td>
+    <a href="/admin/projects/edit/<?= $p['id'] ?>">Edit</a> |
+    <a href="/admin/projects/delete/<?= $p['id'] ?>" onclick="return confirm('Delete project?')">Delete</a>
+  </td>
+</tr>
+<?php endforeach ?>
 </table>
 
-<?php endif; ?>
-
-<?= view('admin/layout/footer') ?>
+<?= $this->endSection() ?>

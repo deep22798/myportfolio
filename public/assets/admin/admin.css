@@ -1,0 +1,357 @@
+/* =====================
+   ADMIN LAYOUT
+===================== */
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* =====================
+   SIDEBAR
+===================== */
+.admin-sidebar {
+  width: 240px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  padding: 24px;
+}
+
+.admin-brand {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+.admin-brand span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.admin-nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  transition: background .2s;
+}
+
+.admin-nav a:hover {
+  background: rgba(99,102,241,.12);
+}
+
+.admin-nav .danger {
+  color: #ef4444;
+}
+
+/* =====================
+   MAIN
+===================== */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =====================
+   TOP BAR
+===================== */
+.admin-top {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+/* =====================
+   CONTENT
+===================== */
+.admin-content {
+  padding: 32px;
+}
+
+/* =====================
+   CARDS
+===================== */
+.admin-card {
+  background: var(--card);
+  padding: 24px;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  margin-bottom: 28px;
+}
+
+/* =====================
+   FORMS
+===================== */
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.admin-form button {
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+/* =====================
+   TABLE
+===================== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+/* =====================
+   THEME BUTTON
+===================== */
+.theme-btn {
+  border: none;
+  background: var(--card);
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+
+.admin-login-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.login-box {
+  background: var(--card);
+  padding: 36px;
+  border-radius: 22px;
+  width: 360px;
+  box-shadow: 0 40px 80px rgba(0,0,0,.2);
+}
+
+.login-box h1 {
+  margin-bottom: 20px;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+
+
+/* =====================
+   DASHBOARD
+===================== */
+.dashboard-header {
+  margin-bottom: 32px;
+}
+
+.dashboard-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.dashboard-header p {
+  color: var(--muted);
+}
+
+/* =====================
+   STATS GRID
+===================== */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.dashboard-card {
+  background: var(--card);
+  padding: 28px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,.08);
+  transition: transform .3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-6px);
+}
+
+.dashboard-card h3 {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.dashboard-card p {
+  color: var(--muted);
+}
+
+/* =====================
+   QUICK ACTIONS
+===================== */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.quick-actions a {
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: rgba(99,102,241,.12);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform .2s ease;
+}
+
+.quick-actions a:hover {
+  transform: translateY(-3px);
+}
+
+
+
+.admin-body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.admin-wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.admin-sidebar {
+  width: 260px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+  padding: 24px;
+}
+
+.admin-sidebar .logo {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 32px;
+}
+
+.admin-sidebar nav a {
+  display: block;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: .2s;
+}
+
+.admin-sidebar nav a:hover,
+.admin-sidebar nav a.active {
+  background: rgba(99,102,241,.15);
+}
+
+.admin-sidebar .logout {
+  color: #ef4444;
+}
+
+/* MAIN */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header {
+  height: 64px;
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+}
+
+.admin-content {
+  padding: 32px;
+}
+
+/* THEME BUTTON */
+.theme-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  border: none;
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--card);
+  cursor: pointer;
+}
+
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.success {
+  color: #22c55e;
+  margin-bottom: 12px;
+}
+
+

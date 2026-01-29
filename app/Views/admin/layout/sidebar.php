@@ -1,17 +1,13 @@
-<div class="col-md-2 bg-light vh-100 p-3">
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/dashboard">Dashboard</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/admin/projects">Projects</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Users</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Comments</a>
-    </li>
-  </ul>
-</div>
-<div class="col-md-10 p-4">
+<aside class="admin-sidebar">
+  <h2 class="logo">StepUp Admin</h2>
+
+  <nav>
+    <a href="/admin" class="<?= uri_string() == 'admin' ? 'active' : '' ?>">Dashboard</a>
+    <a href="/admin/projects" class="<?= str_contains(uri_string(),'projects') ? 'active' : '' ?>">Projects</a>
+    <a href="/admin/skills" class="<?= str_contains(uri_string(),'skills') ? 'active' : '' ?>">Skills</a>
+    <a href="/admin/experience">Experience</a>
+    <a href="/admin/testimonials">Testimonials</a>
+    <a href="/admin/settings">Settings</a>
+    <a href="/admin/logout" class="logout">Logout</a>
+  </nav>
+</aside>

@@ -2,17 +2,17 @@
 
 namespace App\Controllers\Admin;
 
+use App\Controllers\BaseController;
 use App\Models\ProjectModel;
-use CodeIgniter\Files\File;
 
-
-class Projects extends BaseAdmin
+class Projects extends BaseController
 {
     public function index()
     {
         $model = new ProjectModel();
-        $data['projects'] = $model->orderBy('id', 'DESC')->findAll();
-        return view('admin/projects/index', $data);
+        return view('admin/projects/index', [
+            'projects' => $model->orderBy('created_at','DESC')->findAll()
+        ]);
     }
 
     public function create()
@@ -20,53 +20,86 @@ class Projects extends BaseAdmin
         return view('admin/projects/create');
     }
 
-public function store()
-{
-    helper(['text', 'filesystem']);
+    public function store()
+    {
+        $model = new ProjectModel();
 
-    $model = new \App\Models\ProjectModel();
+        // Thumbnail
+        $thumb = $this->request->getFile('thumbnail');
+        $thumbName = null;
+        if ($thumb && $thumb->isValid()) {
+            $thumbName = $thumb->getRandomName();
+            $thumb->move('uploads/projects/thumbs', $thumbName);
+        }
 
-    // ---------- Thumbnail ----------
-    $thumbFile = $this->request->getFile('thumbnail');
-    $thumbName = null;
-
-    if ($thumbFile && $thumbFile->isValid()) {
-        $thumbName = $thumbFile->getRandomName();
-        $thumbFile->move(ROOTPATH . 'public/uploads/projects/thumbs', $thumbName);
-    }
-
-    // ---------- Gallery ----------
-    $galleryFiles = $this->request->getFiles('gallery');
-    $galleryNames = [];
-
-    if (!empty($galleryFiles['gallery'])) {
-        foreach ($galleryFiles['gallery'] as $file) {
+        // Gallery
+        $galleryFiles = $this->request->getFiles()['gallery'] ?? [];
+        $gallery = [];
+        foreach ($galleryFiles as $file) {
             if ($file->isValid()) {
                 $name = $file->getRandomName();
-                $file->move(ROOTPATH . 'public/uploads/projects/gallery', $name);
-                $galleryNames[] = $name;
+                $file->move('uploads/projects/gallery', $name);
+                $gallery[] = $name;
             }
         }
+
+        $title = $this->request->getPost('title');
+
+        $model->insert([
+            'title'       => $title,
+            'slug'        => url_title($title, '-', true),
+            'description' => $this->request->getPost('description'),
+            'type'        => $this->request->getPost('type'),
+            'tech_stack'  => $this->request->getPost('tech_stack'),
+            'thumbnail'   => $thumbName,
+            'gallery'     => json_encode($gallery),
+            'demo_url'    => $this->request->getPost('demo_url'),
+            'github_url'  => $this->request->getPost('github_url'),
+            'is_featured' => $this->request->getPost('is_featured') ? 1 : 0,
+            'status'      => $this->request->getPost('status')
+        ]);
+
+        return redirect()->to('/admin/projects')->with('success', 'Project added');
     }
 
-    $slug = url_title($this->request->getPost('title'), '-', true);
+    public function edit($id)
+    {
+        $model = new ProjectModel();
+        return view('admin/projects/edit', [
+            'project' => $model->find($id)
+        ]);
+    }
 
-    $data = [
-        'title'       => $this->request->getPost('title'),
-        'slug'        => $slug,
-        'description' => $this->request->getPost('description'),
-        'type'        => $this->request->getPost('type'),
-        'tech_stack'  => json_encode($this->request->getPost('tech_stack')),
-        'thumbnail'   => $thumbName,
-        'gallery'     => json_encode($galleryNames),
-        'demo_url'    => $this->request->getPost('demo_url'),
-        'github_url'  => $this->request->getPost('github_url'),
-        'is_featured' => $this->request->getPost('is_featured') ? 1 : 0,
-        'status'      => $this->request->getPost('status'),
-    ];
+    public function update($id)
+    {
+        $model = new ProjectModel();
+        $project = $model->find($id);
 
-    $model->insert($data);
-    return redirect()->to('/admin/projects')->with('success', 'Project added');
-}
+        $thumbName = $project['thumbnail'];
+        $thumb = $this->request->getFile('thumbnail');
+        if ($thumb && $thumb->isValid()) {
+            $thumbName = $thumb->getRandomName();
+            $thumb->move('uploads/projects/thumbs', $thumbName);
+        }
 
+        $model->update($id, [
+            'title'       => $this->request->getPost('title'),
+            'description' => $this->request->getPost('description'),
+            'type'        => $this->request->getPost('type'),
+            'tech_stack'  => $this->request->getPost('tech_stack'),
+            'thumbnail'   => $thumbName,
+            'demo_url'    => $this->request->getPost('demo_url'),
+            'github_url'  => $this->request->getPost('github_url'),
+            'is_featured' => $this->request->getPost('is_featured') ? 1 : 0,
+            'status'      => $this->request->getPost('status')
+        ]);
+
+        return redirect()->to('/admin/projects')->with('success', 'Project updated');
+    }
+
+    public function delete($id)
+    {
+        (new ProjectModel())->delete($id);
+        return redirect()->to('/admin/projects')->with('success', 'Project deleted');
+    }
 }
