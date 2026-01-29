@@ -112,7 +112,8 @@ const typingEl = document.getElementById("typingText");
 if (typingEl) {
   const words = [
     "Flutter Developer",
-    "Mobile App Developer",
+    "IOS Developer",
+    "Android Developer",
     "Web App Developer"
   ];
 
@@ -135,7 +136,7 @@ if (typingEl) {
       }
     }
 
-    setTimeout(typeEffect, isDeleting ? 50 : 100);
+    setTimeout(typeEffect, isDeleting ? 60 : 100);
   }
 
   typeEffect();

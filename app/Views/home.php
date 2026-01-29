@@ -66,8 +66,6 @@
 
 </div>
 
-
-
       <!-- image -->
       <img
         src="<?= base_url('assets/images/profile.png') ?>"
@@ -95,20 +93,23 @@
     <div class="projects-grid">
       <?php foreach ($projects as $index => $p): ?>
         <a href="/project/<?= esc($p['slug']) ?>"
-           class="project-card"
-           data-animate="scale-up"
-           data-delay="<?= $index * 120 ?>">
+   class="project-card"
+   data-animate="scale-up"
+   data-delay="<?= $index * 120 ?>">
 
-          <div class="project-image">
-            <img src="/uploads/projects/thumbs/<?= esc($p['thumbnail']) ?>" alt="">
-          </div>
+  <div class="project-media">
+    <img src="/uploads/projects/thumbs/<?= esc($p['thumbnail']) ?>" alt="<?= esc($p['title']) ?>">
+    <div class="project-overlay"></div>
+  </div>
 
-          <div class="project-info">
-            <span class="project-type"><?= esc($p['type']) ?></span>
-            <h3><?= esc($p['title']) ?></h3>
-          </div>
+  <div class="project-content">
+    <span class="project-type"><?= esc($p['type']) ?></span>
+    <h3><?= esc($p['title']) ?></h3>
+    <span class="project-link">View Case Study →</span>
+  </div>
 
-        </a>
+</a>
+
       <?php endforeach; ?>
     </div>
 
@@ -128,38 +129,15 @@
 
     <div class="skills-grid">
 
-      <div class="skill-card" data-animate="scale-up">
-        <div class="skill-icon">
-          <img src="<?= base_url('assets/icons/flutter.png') ?>">
-        </div>
-        <h4>Flutter Development</h4>
-        <p>High-performance cross-platform apps with clean UI & architecture.</p>
-      </div>
-
-      <div class="skill-card" data-animate="scale-up" data-delay="100">
-        <div class="skill-icon">
-          <img src="<?= base_url('assets/icons/dart.png') ?>">
-        </div>
-        <h4>Dart & State Management</h4>
-        <p>Bloc, Provider, async workflows, performance optimization.</p>
-      </div>
-
-      <div class="skill-card" data-animate="scale-up" data-delay="200">
-        <div class="skill-icon">
-          <img src="<?= base_url('assets/icons/firebase.png') ?>">
-        </div>
-        <h4>Firebase</h4>
-        <p>Auth, Firestore, FCM, real-time apps & analytics.</p>
-      </div>
-
-      <div class="skill-card" data-animate="scale-up" data-delay="300">
-        <div class="skill-icon">
-          <img src="<?= base_url('assets/icons/server.png') ?>">
-        </div>
-        <h4>Backend Development</h4>
-        <p>CodeIgniter 4, REST APIs, secure authentication.</p>
-      </div>
-
+      <?php foreach($skills as $s): ?>
+<div class="skill-card" data-animate="scale-up">
+  <div class="skill-icon">
+    <img src="<?= base_url('assets/icons/'.$s['icon']) ?>">
+  </div>
+  <h4><?= esc($s['title']) ?></h4>
+  <p><?= esc($s['description']) ?></p>
+</div>
+<?php endforeach; ?>
     </div>
   </div>
 </section>
@@ -169,28 +147,12 @@
 
     <div class="experience-grid">
 
-      <div class="experience-box" data-animate="fade-up">
-       <h3 class="count" data-count="3">0</h3>
-        <p>Development Experience</p>
-      </div>
-
-      <div class="experience-box" data-animate="fade-up" data-delay="100">
-        <h3 class="count" data-count="20">0</h3>
-
-        <p>Projects Delivered</p>
-      </div>
-
-      <div class="experience-box" data-animate="fade-up" data-delay="200">
-       <h3 class="count" data-count="20">0</h3>
-
-        <p>Happy Clients</p>
-      </div>
-
-      <div class="experience-box" data-animate="fade-up" data-delay="300">
-        <h3 class="count" data-count="20">0</h3>
-
-        <p>Live Apps</p>
-      </div>
+      <?php foreach($experience as $e): ?>
+<div class="experience-box">
+  <h3 class="count" data-count="<?= esc($e['value']) ?>">0</h3>
+  <p><?= esc($e['label']) ?></p>
+</div>
+<?php endforeach; ?>
 
     </div>
   </div>
@@ -208,16 +170,10 @@
 
     <div class="tech-stack">
 
-      <span class="stack-badge">Flutter</span>
-      <span class="stack-badge">Dart</span>
-      <span class="stack-badge">Firebase</span>
-      <span class="stack-badge">PHP</span>
-      <span class="stack-badge">CodeIgniter 4</span>
-      <span class="stack-badge">MySQL</span>
-      <span class="stack-badge">REST APIs</span>
-      <span class="stack-badge">Git</span>
-      <span class="stack-badge">VPS</span>
-      <span class="stack-badge">CI/CD</span>
+      <?php foreach($techStack as $t): ?>
+      <span class="stack-badge"><?= esc($t['name']) ?></span>
+      <?php endforeach; ?>
+
 
     </div>
 
@@ -236,28 +192,13 @@
 
     <div class="testimonials-grid">
 
-      <div class="testimonial-card" data-animate="scale-up">
-        <p>
-          “Kuldeep delivered our app on time with excellent quality.
-          Communication and performance were outstanding.”
-        </p>
-        <h4>— Startup Founder</h4>
+      <?php foreach($testimonials as $t): ?>
+      <div class="testimonial-card">
+        <p>“<?= esc($t['message']) ?>”</p>
+        <h4>— <?= esc($t['author']) ?></h4>
       </div>
+      <?php endforeach; ?>
 
-      <div class="testimonial-card" data-animate="scale-up" data-delay="120">
-        <p>
-          “Very professional Flutter developer.
-          Clean code, scalable architecture and great UI sense.”
-        </p>
-        <h4>— Product Manager</h4>
-      </div>
-
-      <div class="testimonial-card" data-animate="scale-up" data-delay="240">
-        <p>
-          “Highly recommended for mobile and backend development.”
-        </p>
-        <h4>— Agency Client</h4>
-      </div>
 
     </div>
 

@@ -844,3 +844,117 @@ p {
 .hero p {
   font-size: 18px;
 }
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+}
+
+.project-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform .5s ease, box-shadow .5s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 30px 80px rgba(0,0,0,.35);
+}
+
+/* Image */
+.project-media {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.project-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.12);
+}
+
+/* Gradient overlay */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.75),
+    rgba(0,0,0,.1),
+    transparent
+  );
+}
+
+/* Content */
+.project-content {
+  padding: 18px 20px 22px;
+}
+
+.project-type {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: .6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(6px);
+  margin-bottom: 10px;
+}
+
+.project-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 6px;
+}
+
+.project-link {
+  font-size: 13px;
+  opacity: .7;
+  transition: opacity .3s ease;
+}
+
+.project-card:hover .project-link {
+  opacity: 1;
+}
+
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.12),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform .8s ease;
+}
+
+.project-card:hover::after {
+  transform: translateX(100%);
+}
+
+
+@media (max-width: 600px) {
+  .project-media {
+    height: 190px;
+  }
+
+  .project-content h3 {
+    font-size: 1rem;
+  }
+}
