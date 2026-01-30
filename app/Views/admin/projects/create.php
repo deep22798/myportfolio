@@ -1,39 +1,54 @@
-<?= view('admin/layout/header') ?>
-<?= view('admin/layout/sidebar') ?>
+<?= $this->extend('admin/layout/main') ?>
+<?= $this->section('content') ?>
 
-<h3>Add Project</h3>
+<h1>Add Project</h1>
 
-<form method="post" action="/admin/projects/store" enctype="multipart/form-data">
+<form action="/admin/projects/store" method="post" enctype="multipart/form-data" class="admin-form">
 
-<input name="title" class="form-control mb-2" placeholder="Project Title" required>
+  <label>Title</label>
+  <input type="text" name="title" required>
 
-<textarea name="description" class="form-control mb-2" placeholder="Description"></textarea>
+  <label>Description</label>
+  <textarea name="description"></textarea>
 
-<select name="type" class="form-control mb-2">
-  <option value="mobile">Mobile App</option>
-  <option value="web">Web App</option>
-  <option value="website">Website</option>
+  <label>Type</label>
+  <input type="text" name="type" placeholder="Web / App / API">
+
+<label>Tech Stack</label>
+<select name="tech_stack" required>
+  <?php foreach($techStacks as $t): ?>
+    <option value="<?= $t['id'] ?>">
+      <?= esc($t['name']) ?>
+    </option>
+  <?php endforeach ?>
 </select>
 
-<label class="mt-2">Thumbnail</label>
-<input type="file" name="thumbnail" class="form-control mb-2" accept="image/*">
+  <label>Thumbnail</label>
+  <input type="file" name="thumbnail">
 
-<label>Gallery (multiple)</label>
-<input type="file" name="gallery[]" class="form-control mb-2" accept="image/*" multiple>
+  <label>Gallery Images</label>
+  <input type="file" name="gallery[]" multiple>
 
-<input name="demo_url" class="form-control mb-2" placeholder="Demo URL">
-<input name="github_url" class="form-control mb-2" placeholder="GitHub URL">
+  <label>Demo URL</label>
+  <input type="url" name="demo_url">
 
-<label class="mt-2">
-  <input type="checkbox" name="is_featured"> Featured
-</label>
+  <label>GitHub URL</label>
+  <input type="url" name="github_url">
 
-<select name="status" class="form-control mt-2">
-  <option value="draft">Draft</option>
-  <option value="published">Published</option>
-</select>
+  <label>
+    <input type="checkbox" name="is_featured" value="1">
+    Featured Project
+  </label>
 
-<button class="btn btn-dark mt-3">Save Project</button>
+  <label>Status</label>
+  <select name="status">
+    <option value="active">Active</option>
+    <option value="inactive">Inactive</option>
+  </select>
+
+  <button type="submit" class="btn btn-primary">Save Project</button>
+  <a href="/admin/projects" class="btn">Cancel</a>
+
 </form>
 
-<?= view('admin/layout/footer') ?>
+<?= $this->endSection() ?>

@@ -77,11 +77,18 @@ $routes->get('skills/delete/(:num)', 'Admin\Skills::delete/$1');
 
 
 $routes->get('settings', 'Admin\Settings::index');
+
 $routes->post('admin/settings/update', 'Admin\Settings::update');
-
-
     $routes->get('skills', 'Admin\Skills::index');
-    $routes->get('projects', 'Admin\Projects::index');
+     $routes->group('projects', function ($routes) {
+        $routes->get('/', 'Admin\Projects::index');
+        $routes->get('create', 'Admin\Projects::create');
+        $routes->post('store', 'Admin\Projects::store');
+        $routes->get('edit/(:num)', 'Admin\Projects::edit/$1');
+        $routes->post('update/(:num)', 'Admin\Projects::update/$1');
+        $routes->get('delete/(:num)', 'Admin\Projects::delete/$1');
+    });
+    
     $routes->get('experience', 'Admin\Experience::index');
     $routes->get('tech-stack', 'Admin\TechStack::index');
     $routes->get('testimonials', 'Admin\Testimonials::index');

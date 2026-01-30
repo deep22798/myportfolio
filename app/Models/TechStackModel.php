@@ -13,4 +13,5 @@ class TechStackModel extends Model
         'name',
         'sort_order'
     ];
+    
 }

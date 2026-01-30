@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\ProjectModel;
+use App\Models\TechStackModel;
 
 class Projects extends BaseController
 {
@@ -15,10 +16,12 @@ class Projects extends BaseController
         ]);
     }
 
-    public function create()
-    {
-        return view('admin/projects/create');
-    }
+public function create()
+{
+    return view('admin/projects/create', [
+        'techStacks' => (new TechStackModel())->orderBy('sort_order')->findAll()
+    ]);
+}
 
     public function store()
     {
@@ -62,13 +65,13 @@ class Projects extends BaseController
         return redirect()->to('/admin/projects')->with('success', 'Project added');
     }
 
-    public function edit($id)
-    {
-        $model = new ProjectModel();
-        return view('admin/projects/edit', [
-            'project' => $model->find($id)
-        ]);
-    }
+public function edit($id)
+{
+    return view('admin/projects/edit', [
+        'project'    => (new ProjectModel())->find($id),
+        'techStacks' => (new TechStackModel())->orderBy('sort_order')->findAll()
+    ]);
+}
 
     public function update($id)
     {
